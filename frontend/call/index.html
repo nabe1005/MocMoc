@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>&TITLE&</title>
+  <link rel="stylesheet" href="/call/index.css">
+  <link rel="stylesheet" href="/shared/variable.css">
+  <link rel="stylesheet" href="/shared/reset.css">
+</head>
+
+<body>
+  <div>終了しました</div>
+  <div class="loading-overlay" id="js-loading">
+    <div class="ping"></div>
+    <div class="message">仲間を探しています</div>
+  </div>
+  <video id="js-remote-stream"></video>
+  <video id="js-local-stream"></video>
+  <div id="js-close-trigger" class="end-button">終了する</div>
+  <div class="ui">
+    <div id="js-category-name"></div>
+  </div>
+</body>
+<script src="//cdn.webrtc.ecl.ntt.com/skyway-4.4.5.js"></script>
+<script type="module">
+  import { main } from '/call/index.js'
+  window.onload = async () => {
+    main()
+  }
+</script>
+
+</html>

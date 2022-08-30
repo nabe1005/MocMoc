@@ -1,0 +1,17 @@
+body {
+  background-color: var(--color-primary);
+}
+
+.title {
+  font-size: 24px;
+  padding: 8px 8px 16px 8px;
+  color: var(--color-on-primary);
+  font-weight: bold;
+}
+
+.list-item {
+  line-height: 48px;
+  color: var(--color-on-primary);
+  padding: 0 16px;
+  font-size: 20px;
+}

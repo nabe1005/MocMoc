@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>&TITLE&</title>
+  <link rel="stylesheet" href="/shared/variable.css">
+  <link rel="stylesheet" href="/categories/index.css">
+  <link rel="stylesheet" href="/shared/reset.css">
+</head>
+
+<body>
+  <div class="title">作業を選択してください</div>
+</body>
+<script type="module">
+  import { get } from '/shared/api.js'
+  const categories = await get('categories')
+  console.log(categories)
+  categories.forEach(category => {
+    const element = document.createElement('div')
+    element.className = 'list-item'
+    element.innerHTML = category
+    document.body.appendChild(element)
+
+    element.onclick = async () => {
+      localStorage.setItem('search-category', element.innerHTML)
+      location.href = '/call'
+    }
+  })
+</script>
+
+</html>
