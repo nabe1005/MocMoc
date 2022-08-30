@@ -14,14 +14,20 @@ serve((req) => {
   if (req.method === "POST" && pathname === "/call") {
     const mockResult = { "contact_user_name": "", "contact_user_call_id": "" };
     return new Response(JSON.stringify(mockResult), {
-      headers: { "Content-Type": "application/json; charset=utf-8" },
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+        "Access-Controll-Allow-Origin": "*",
+      },
     });
   }
 
   if (req.method === "GET" && pathname === "/categories") {
     const mockCategories = ["勉強", "筋トレ", "雑談"];
     return new Response(JSON.stringify(mockCategories), {
-      headers: { "Content-Type": "application/json; charset=utf-8" },
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+        "Access-Controll-Allow-Origin": "*",
+      },
     });
   }
 
