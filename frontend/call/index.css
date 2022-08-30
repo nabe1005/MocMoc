@@ -15,11 +15,29 @@
   object-fit: cover;
   border-radius: 16px;
 }
+
 .ui {
   position: fixed;
   z-index: 100;
   top: 0;
   left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.category-name {
+  padding: 4px 8px;
+  color: white;
+}
+
+.center {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .loading-overlay {
