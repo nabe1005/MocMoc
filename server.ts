@@ -27,6 +27,7 @@ serve(async (req) => {
         "contact_user_name": user.userName,
         "contact_user_call_id": user.callId,
       };
+      waitUsers = [];
     }
 
     waitUsers.push(user);
