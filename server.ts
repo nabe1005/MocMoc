@@ -7,13 +7,30 @@ import { User } from "./user.ts";
 let waitUsers: User[] = [];
 
 console.log("Listening on http://localhost:8000");
-serve((req) => {
+serve(async (req) => {
   const pathname = new URL(req.url).pathname;
   console.log(pathname);
 
   if (req.method === "POST" && pathname === "/api/call") {
-    const mockResult = { "contact_user_name": "", "contact_user_call_id": "" };
-    return new Response(JSON.stringify(mockResult), {
+    const requestJson = await req.json();
+    const user: User = {
+      userName: requestJson["user_name"],
+      callId: requestJson["call_id"],
+      category: requestJson["category"],
+    };
+    console.log(user);
+    waitUsers.push(user);
+
+    let response = { "contact_user_name": "", "contact_user_call_id": "" };
+    if (waitUsers.length !== 0) {
+      const user = waitUsers[0];
+      response = {
+        "contact_user_name": user.userName,
+        "contact_user_call_id": user.callId,
+      };
+    }
+
+    return new Response(JSON.stringify(response), {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
         "Access-Control-Allow-Origin": "*",
