@@ -14,10 +14,11 @@ serve(async (req) => {
   if (req.method === "POST" && pathname === "/api/call") {
     const requestJson = await req.json();
     const user: User = {
-      userName: requestJson.userName,
-      callId: requestJson.callId,
-      category: requestJson.category,
+      userName: requestJson["user_name"],
+      callId: requestJson["call_id"],
+      category: requestJson["category"],
     };
+    console.log(user);
     waitUsers.push(user);
 
     let response = { "contact_user_name": "", "contact_user_call_id": "" };
