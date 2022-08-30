@@ -1,10 +1,9 @@
 import { serveDir } from "https://deno.land/std@0.138.0/http/file_server.ts";
 import { serve } from "https://deno.land/std@0.138.0/http/server.ts";
+import { _format } from "https://deno.land/std@0.138.0/path/_util.ts";
 import { User } from "./user.ts";
 
-// TODO: 本実装に使用するため、消さずに残す
-// deno-lint-ignore prefer-const
-let waitUsers: User[] = [];
+const waitUsers: User[] = [];
 
 console.log("Listening on http://localhost:8000");
 serve(async (req) => {
@@ -20,17 +19,23 @@ serve(async (req) => {
     };
     console.log(user);
 
+    // マッチングユーザーの検索
+    const sameCategoryUserIndex = waitUsers.findIndex((waitUser) =>
+      waitUser.category === user.category
+    );
+
+    // レスポンス作成
     let response = { "contact_user_name": "", "contact_user_call_id": "" };
-    if (waitUsers.length !== 0) {
-      const user = waitUsers[0];
+    if (sameCategoryUserIndex !== -1) {
+      const user = waitUsers[sameCategoryUserIndex];
       response = {
         "contact_user_name": user.userName,
         "contact_user_call_id": user.callId,
       };
-      waitUsers = [];
+      waitUsers.splice(sameCategoryUserIndex, 1);
+    } else {
+      waitUsers.push(user);
     }
-
-    waitUsers.push(user);
 
     return new Response(JSON.stringify(response), {
       headers: {
