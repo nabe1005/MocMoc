@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>&TITLE&</title>
+  <link rel="stylesheet" href="/shared/variable.css">
+  <link rel="stylesheet" href="/index.css">
+  <link rel="stylesheet" href="/shared/reset.css">
+</head>
+
+<body>
+  <div class="title">最初に名前を教えてください</div>
+  <div class="layout">
+    <input id="nameInput" placeholder="名前を入力">
+    <div class="button" id="nameButton">決定！</div>
+  </div>
+</body>
+<script type="module">
+  window.onload = async () => {
+    // 名前決定ボタンをクリックした時の処理
+    nameButton.onclick = async () => {
+      const name = nameInput.value
+      if (!name) {
+        return
+      }
+
+      localStorage.setItem('user_name', name)
+      location.href = '/categories'
+    }
+
+  }
+</script>
+
+</html>

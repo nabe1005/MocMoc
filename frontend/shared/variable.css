@@ -1,0 +1,8 @@
+body {
+  --color-primary: #56CBF9;
+  --color-on-primary: #FFFFFF;
+  --color-emphasis: #ff729f;
+  --color-surface: #FFFFFF;
+
+  --color-border: gray;
+}

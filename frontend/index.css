@@ -1,0 +1,39 @@
+body {
+  background-color: var(--color-primary);
+}
+
+.layout {
+  width: 100vw;
+  height: calc(100vh - 52px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.title {
+  font-size: 24px;
+  padding: 8px;
+  color: var(--color-on-primary);
+  font-weight: bold;
+}
+
+input {
+  border: none;
+  border-bottom: 1px solid var(--color-on-primary);
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--color-on-primary);
+}
+
+input:focus {
+  border: none;
+  border-bottom: 1px solid gray;
+}
+
+.button {
+  color: var(--color-on-primary);
+  border: 1px solid var(--color-on-primary);
+  border-radius: 10000px;
+  padding: 2px 8px;
+  margin-top: 8px;
+  cursor: pointer;
+}
