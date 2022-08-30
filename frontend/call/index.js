@@ -13,6 +13,10 @@ export async function main() {
   goTopTrigger.style.display = "none";
   category.innerHTML = localStorage.getItem("search-category") + "をしよう！";
 
+  goTopTrigger.onclick = () => {
+    location.href = "/";
+  };
+
   const localStream = await navigator.mediaDevices
     .getUserMedia({
       audio: true,
