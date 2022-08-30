@@ -8,7 +8,9 @@ export async function main() {
   const remoteVideo = document.getElementById("js-remote-stream");
   const loading = document.getElementById("js-loading");
   const category = document.getElementById("js-category-name");
+  const goTopTrigger = document.getElementById("js-go-top-trigger");
 
+  goTopTrigger.style.display = "none";
   category.innerHTML = localStorage.getItem("search-category") + "をしよう！";
 
   const localStream = await navigator.mediaDevices
@@ -85,6 +87,7 @@ export async function main() {
       remoteVideo.srcObject.getTracks().forEach((track) => track.stop());
       remoteVideo.srcObject = null;
       closeTrigger.style.display = "none";
+      goTopTrigger.style.display = "block";
     });
 
     closeTrigger.addEventListener("click", () => mediaConnection.close(true));
@@ -106,6 +109,7 @@ export async function main() {
       remoteVideo.srcObject.getTracks().forEach((track) => track.stop());
       remoteVideo.srcObject = null;
       closeTrigger.style.display = "none";
+      goTopTrigger.style.display = "block";
     });
 
     closeTrigger.addEventListener("click", () => mediaConnection.close(true));
