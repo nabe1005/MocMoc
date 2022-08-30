@@ -19,7 +19,6 @@ serve(async (req) => {
       category: requestJson["category"],
     };
     console.log(user);
-    waitUsers.push(user);
 
     let response = { "contact_user_name": "", "contact_user_call_id": "" };
     if (waitUsers.length !== 0) {
@@ -29,6 +28,8 @@ serve(async (req) => {
         "contact_user_call_id": user.callId,
       };
     }
+
+    waitUsers.push(user);
 
     return new Response(JSON.stringify(response), {
       headers: {
