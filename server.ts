@@ -52,7 +52,7 @@ serve(async (req) => {
     });
   }
 
-  if (req.method === "POST" && pathname === "api/cancel") {
+  if (req.method === "POST" && pathname === "/api/cancel") {
     const requestJson = await req.json();
     const callId = requestJson["call_id"];
     waitUsers.splice(
