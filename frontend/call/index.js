@@ -103,7 +103,7 @@ export async function main() {
       remoteVideo.srcObject = null;
       closeTrigger.style.display = "none";
       goTopTrigger.style.display = "block";
-      endAnounce.style.display = "block";
+      endAnounce.style.display = "flex";
     });
 
     closeTrigger.addEventListener("click", () => mediaConnection.close(true));
