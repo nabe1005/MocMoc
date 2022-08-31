@@ -4,19 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>&TITLE&</title>
+  <title>MocMoc</title>
+  <link rel="icon" href="/assets/favicon.png">
   <link rel="stylesheet" href="/call/index.css">
   <link rel="stylesheet" href="/shared/variable.css">
   <link rel="stylesheet" href="/shared/reset.css">
+  <link rel="stylesheet" href="/shared/move-circle.css">
 </head>
 
 <body>
+  <div class="move-circle"></div>
   <div class="center">
     <div>終了しました✌️</div>
   </div>
   <div class="loading-overlay" id="js-loading">
     <div class="ping"></div>
     <div class="message">仲間を探しています</div>
+    <div id="js-cancel-trigger" class="end-button">キャンセル</div>
   </div>
   <video id="js-remote-stream"></video>
   <video id="js-local-stream"></video>
@@ -29,8 +33,11 @@
 <script src="//cdn.webrtc.ecl.ntt.com/skyway-4.4.5.js"></script>
 <script type="module">
   import { main } from '/call/index.js'
+  import { onLoad, beforeMove } from '/shared/move.js'
+
   window.onload = async () => {
     main()
+    onLoad()
   }
 </script>
 

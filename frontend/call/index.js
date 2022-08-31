@@ -1,6 +1,7 @@
 const Peer = window.Peer;
 window.__SKYWAY_KEY__ = "6dbe3db2-b095-4e99-8707-b0b102c42066";
 import { post } from "../shared/api.js";
+import { beforeMove } from '/shared/move.js'
 
 export async function main() {
   const localVideo = document.getElementById("js-local-stream");
@@ -9,12 +10,15 @@ export async function main() {
   const loading = document.getElementById("js-loading");
   const category = document.getElementById("js-category-name");
   const goTopTrigger = document.getElementById("js-go-top-trigger");
+  const cancelTrigger = document.getElementById("js-cancel-trigger");
 
   goTopTrigger.style.display = "none";
   category.innerHTML = localStorage.getItem("search-category") + "をしよう！";
+  cancelTrigger.style.display = "none";
 
-  goTopTrigger.onclick = () => {
-    location.href = "/";
+  goTopTrigger.onclick = async () => {
+    await beforeMove()
+    location.replace("/categories");
   };
 
   const localStream = await navigator.mediaDevices
@@ -35,37 +39,19 @@ export async function main() {
     debug: 3,
   }));
 
-  // Register caller handler
-  // callTrigger.addEventListener('click', () => {
-  //   // Note that you need to ensure the peer has connected to signaling server
-  //   // before using methods of peer instance.
-  //   if (!peer.open) {
-  //     return;
-  //   }
-
-  //   const mediaConnection = peer.call(remoteId.value, localStream);
-
-  //   mediaConnection.on('stream', async stream => {
-  //     // Render remote stream for caller
-  //     remoteVideo.srcObject = stream;
-  //     remoteVideo.playsInline = true;
-  //     await remoteVideo.play().catch(console.error);
-  //   });
-
-  //   mediaConnection.once('close', () => {
-  //     remoteVideo.srcObject.getTracks().forEach(track => track.stop());
-  //     remoteVideo.srcObject = null;
-  //   });
-
-  //   closeTrigger.addEventListener('click', () => mediaConnection.close(true));
-  // });
-
   peer.once("open", async (id) => {
     console.log(id);
     const matchData = {
       call_id: id,
       user_name: localStorage.getItem("user_name"),
       category: localStorage.getItem("search-category"),
+    };
+
+    cancelTrigger.style.display = "block";
+    cancelTrigger.onclick = async () => {
+      await post("cancel", matchData);
+      await beforeMove()
+      location.replace("/categories");
     };
     const match = await post("call", matchData);
 

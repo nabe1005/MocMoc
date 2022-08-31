@@ -15,3 +15,13 @@ body {
   padding: 0 16px;
   font-size: 20px;
 }
+
+.end-button {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  background-color: var(--color-emphasis);
+  color: var(--color-on-primary);
+  border-radius: 10000px;
+  padding: 4px 8px;
+}

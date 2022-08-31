@@ -1,0 +1,13 @@
+.move-circle {
+  position: fixed;
+  height: 250vh;
+  width: 250vh;
+  border-radius: 100%;
+  background-color: var(--color-surface);
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+
+  transition: height 300ms, width 300ms;
+  z-index: 10000000000000000000000;
+}
