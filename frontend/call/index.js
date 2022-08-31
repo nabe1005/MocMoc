@@ -11,8 +11,10 @@ export async function main() {
   const category = document.getElementById("js-category-name");
   const goTopTrigger = document.getElementById("js-go-top-trigger");
   const cancelTrigger = document.getElementById("js-cancel-trigger");
+  const endAnounce = document.getElementById("end-anounce");
 
   goTopTrigger.style.display = "none";
+  endAnounce.style.display = 'none';
   category.innerHTML = localStorage.getItem("search-category") + "をしよう！";
   cancelTrigger.style.display = "none";
 
@@ -78,6 +80,7 @@ export async function main() {
       remoteVideo.srcObject = null;
       closeTrigger.style.display = "none";
       goTopTrigger.style.display = "block";
+      endAnounce.style.display = "block";
     });
 
     closeTrigger.addEventListener("click", () => mediaConnection.close(true));
@@ -100,6 +103,7 @@ export async function main() {
       remoteVideo.srcObject = null;
       closeTrigger.style.display = "none";
       goTopTrigger.style.display = "block";
+      endAnounce.style.display = "block";
     });
 
     closeTrigger.addEventListener("click", () => mediaConnection.close(true));
