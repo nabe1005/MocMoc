@@ -16,28 +16,36 @@
 <body>
   <div class="move-circle"></div>
   <div class="title">何をしよう！</div>
+  <div class="end-button" id="js-go-top-trigger">名前を変える</div>
 </body>
 <script type="module">
   import { get } from '/shared/api.js'
   import { onLoad, beforeMove } from '/shared/move.js'
 
-  onLoad()
-
-  const categories = await get('categories')
-  console.log(categories)
-  categories.forEach(category => {
-    const element = document.createElement('div')
-    element.className = 'list-item'
-    element.innerHTML = category
-    document.body.appendChild(element)
-
-    element.onclick = async () => {
+  window.onload = async () => {
+    onLoad()
+    const goTopTrigger = document.getElementById("js-go-top-trigger");
+    goTopTrigger.onclick = async () => {
       await beforeMove()
-
-      localStorage.setItem('search-category', element.innerHTML)
-      location.replace('/call')
+      location.replace('/')
     }
-  })
+
+    const categories = await get('categories')
+    console.log(categories)
+    categories.forEach(category => {
+      const element = document.createElement('div')
+      element.className = 'list-item'
+      element.innerHTML = category
+      document.body.appendChild(element)
+
+      element.onclick = async () => {
+        await beforeMove()
+
+        localStorage.setItem('search-category', element.innerHTML)
+        location.replace('/call')
+      }
+    })
+  }
 </script>
 
 </html>
