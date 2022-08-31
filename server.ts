@@ -44,7 +44,7 @@ serve(async (req) => {
   }
 
   if (req.method === "GET" && pathname === "/api/categories") {
-    const mockCategories = ["勉強", "筋トレ", "雑談"];
+    const mockCategories = ["勉強", "筋トレ", "プログラミング"];
     return new Response(JSON.stringify(mockCategories), {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
