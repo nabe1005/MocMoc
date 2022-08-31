@@ -1,3 +1,3 @@
-# min-do
+# MocMoc
 
-https://nabe1005-min-do.deno.dev/
+https://mocmoc.deno.dev/
