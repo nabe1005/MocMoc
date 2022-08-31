@@ -49,6 +49,21 @@ serve(async (req) => {
     });
   }
 
+  if (req.method === "POST" && pathname === "api/cancel") {
+    const requestJson = await req.json();
+    const callId = requestJson["call_id"];
+    waitUsers.splice(
+      waitUsers.findIndex((waitUser) => waitUser.callId === callId),
+      1,
+    );
+
+    return new Response(JSON.stringify(waitUsers), {
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+    });
+  }
+
   return serveDir(req, {
     fsRoot: "frontend",
     urlRoot: "",
