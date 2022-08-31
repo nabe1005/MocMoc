@@ -8,9 +8,11 @@
   <link rel="stylesheet" href="/call/index.css">
   <link rel="stylesheet" href="/shared/variable.css">
   <link rel="stylesheet" href="/shared/reset.css">
+  <link rel="stylesheet" href="/shared/move-circle.css">
 </head>
 
 <body>
+  <div class="move-circle"></div>
   <div class="center">
     <div>終了しました✌️</div>
   </div>
@@ -30,8 +32,11 @@
 <script src="//cdn.webrtc.ecl.ntt.com/skyway-4.4.5.js"></script>
 <script type="module">
   import { main } from '/call/index.js'
+  import { onLoad, beforeMove } from '/shared/move.js'
+
   window.onload = async () => {
     main()
+    onLoad()
   }
 </script>
 

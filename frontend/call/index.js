@@ -1,6 +1,7 @@
 const Peer = window.Peer;
 window.__SKYWAY_KEY__ = "6dbe3db2-b095-4e99-8707-b0b102c42066";
 import { post } from "../shared/api.js";
+import { beforeMove } from '/shared/move.js'
 
 export async function main() {
   const localVideo = document.getElementById("js-local-stream");
@@ -15,8 +16,9 @@ export async function main() {
   category.innerHTML = localStorage.getItem("search-category") + "をしよう！";
   cancelTrigger.style.display = "none";
 
-  goTopTrigger.onclick = () => {
-    location.href = "/categories";
+  goTopTrigger.onclick = async () => {
+    await beforeMove()
+    location.replace("/categories");
   };
 
   const localStream = await navigator.mediaDevices
@@ -48,7 +50,8 @@ export async function main() {
     cancelTrigger.style.display = "block";
     cancelTrigger.onclick = async () => {
       await post("cancel", matchData);
-      location.href = "/categories";
+      await beforeMove()
+      location.replace("/categories");
     };
     const match = await post("call", matchData);
 
