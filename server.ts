@@ -1,6 +1,5 @@
 import { serveDir } from "https://deno.land/std@0.138.0/http/file_server.ts";
 import { serve } from "https://deno.land/std@0.138.0/http/server.ts";
-import { _format } from "https://deno.land/std@0.138.0/path/_util.ts";
 import { User } from "./user.ts";
 
 const waitUsers: User[] = [];
@@ -40,7 +39,6 @@ serve(async (req) => {
     return new Response(JSON.stringify(response), {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
-        "Access-Control-Allow-Origin": "*",
       },
     });
   }
@@ -50,7 +48,6 @@ serve(async (req) => {
     return new Response(JSON.stringify(mockCategories), {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
-        "Access-Controll-Allow-Origin": "*",
       },
     });
   }
